@@ -1,5 +1,5 @@
 # Set up the dreamhost git repo
-if yes?("Do you want to create a git repo on Dreamhost?")
+if yes?("Use Git on Dreamhost?")
   load_template "/Users/christopherdwarren/Workspace/rails-templates/dreamhost.rb"
   using_git = true
 end
@@ -18,11 +18,21 @@ plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notificat
 plugin 'restful-authentication', :git => 'git://github.com/technoweenie/restful-authentication.git'
 
 # Freeze Gems
-rake("rails:freeze:gems", :sudo => true) if yes?("Freeze rails gems?")
+rake("rails:freeze:gems") if yes?("Freeze rails gems?")
 
 # Commit to git if we created the repo
 if using_git
   git :add => "."
   git :commit => "-a -m 'Installed plugins and gems'"
   git :push => "origin master"
+  
+  if yes?("Set up Capistrano?")
+    load_template "/Users/christopherdwarren/Workspace/rails-templates/capistrano.rb"
+    
+    git :add => "."
+    git :commit => "-a -m 'Installed plugins and gems'"
+    git :push => "origin master"
+    
+    puts "-----------Don't forget to add your Git password to config/deploy.rb!-----------"
+  end
 end
