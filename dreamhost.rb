@@ -3,9 +3,9 @@ dreamhost_domain = 'cdwarren@designfigure.com'
 
 # Create git repo on Dreamhost
 app_name = run("pwd").split("/").last.strip
-run "ssh #{dreamgit_domain} 'mkdir -p ~/git/#{app_name}.git && cd ~/git/#{app_name}.git && git --bare init'"
+run "ssh #{dreamhost_domain} 'mkdir -p ~/git/#{app_name}.git && cd ~/git/#{app_name}.git && git --bare init'"
 git :init
-run "git remote add origin ssh://#{dreamgit_domain}/~/git/#{app_name}.git"
+run "git remote add origin ssh://#{dreamhost_domain}/~/git/#{app_name}.git"
 
 # Remove default files
 run "rm README"
@@ -22,10 +22,12 @@ log/*.log
 tmp/**/*
 config/database.yml
 db/*.sqlite3
+db/*.db
+db/schema.rb
 END
 
 run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"  
-run "cp config/database.yml config/example_database.yml"
+run "cp config/database.yml config/database.yml.example"
 
 # Add to Git Repo
 git :add => "."
