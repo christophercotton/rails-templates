@@ -24,6 +24,9 @@ config/database.yml
 db/*.sqlite3
 END
 
+run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"  
+run "cp config/database.yml config/example_database.yml"
+
 # Add to Git Repo
 git :add => "."
 git :commit => "-a -m 'Initial commit'"
