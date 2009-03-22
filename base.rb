@@ -30,7 +30,7 @@ if using_git
     load_template "/Users/christopherdwarren/Workspace/rails-templates/capistrano.rb"
     
     git :add => "."
-    git :commit => "-a -m 'Installed plugins and gems'"
+    git :commit => "-a -m 'Set up Capistrano'"
     git :push => "origin master"
     
     puts "-----------Don't forget to add your Git password to config/deploy.rb!-----------"
