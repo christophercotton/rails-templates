@@ -11,6 +11,7 @@ run "rm public/robots.txt"
 
 # Create public controller
 generate(:controller, "public", "index", "about", "contact")
+route "map.root :controller => :public"
 
 # Set up gems
 gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
@@ -22,7 +23,7 @@ rake("rails:freeze:gems") if yes?("Freeze Rails gems?")
 
 # Set up plugins
 plugin 'exception_notifier', :git => 'git://github.com/rails/exception_notification.git'
-plugin 'restful-authentication', :git => 'git://github.com/technoweenie/restful-authentication.git'
+plugin 'authlogic', :git => 'git://github.com/binarylogic/authlogic.git'
 plugin 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 plugin 'asset_packager', :git => 'http://synthesis.sbecker.net/pages/asset_packager'
 
