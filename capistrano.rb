@@ -1,5 +1,4 @@
 run "gem install capistrano"
-app_name = run("pwd").split("/").last.strip
 url = ask("What is your application's URL? (mydomain.com)")
 git_pwd = ask("What is git user's password?")
 
@@ -7,15 +6,15 @@ gem 'capistrano'
 run 'capify .'
 run 'rm config/deploy.rb'
 file "config/deploy.rb", <<-CAP
-set :user, '#{app_name}'  # Your dreamhost account's username
+set :user, '#{@app_name}'  # Your dreamhost account's username
 set :domain, 'foothill.dreamhost.com'  # Dreamhost servername where your account is located 
-set :project, '#{app_name}'  # Your application as its called in the repository
+set :project, '#{@app_name}'  # Your application as its called in the repository
 set :application, '#{url}'  # Your app's location (domain or sub-domain name as setup in panel)
-set :applicationdir, "/home/#{app_name}/#{url}"  # The standard Dreamhost setup
+set :applicationdir, "/home/#{@app_name}/#{url}"  # The standard Dreamhost setup
 
 # version control config
 default_run_options[:pty] = true
-set :repository,  "ssh://#{@dreamhost_domain}/~/git/#{app_name}.git"
+set :repository,  "ssh://#{@dreamhost_domain}/~/git/#{@app_name}.git"
 set :scm, "git"
 set :scm_passphrase, "#{git_pwd}" # Your Git user's password
 

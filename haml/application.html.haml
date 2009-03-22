@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %link{ :rel => "shortcut icon", :href => "/favicon.ico", :type => "image/x-icon"}/
+    %title= controller.controller_name.capitalize
+    = stylesheet_link_tag 'base'
+  %body
+    .header#header
+      = render :partial => 'layouts/header'
+      .menu#menu= render :partial => 'layouts/menu'
+    .content#content= yield
+    .footer#footer= render :partial => 'layouts/footer'
