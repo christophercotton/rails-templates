@@ -62,6 +62,46 @@ namespace :git do
   end
 end
 before "deploy:update_code", "git:unpushed"
+
+desc "tail production log files" 
+task :tail_logs, :roles => :app do
+  run "tail -f \#{shared_path}/log/production.log" do |channel, stream, data|
+    puts  # for an extra line break before the host name
+    puts "\#{channel[:host]}: \#{data}" 
+    break if stream == :err    
+  end
+end
+
+desc "check production log files in textmate" 
+task :mate_logs, :roles => :app do
+
+  require 'tempfile'
+  tmp = Tempfile.open('w')
+  logs = Hash.new { |h,k| h[k] = '' }
+
+  run "tail -n500 \#{shared_path}/log/production.log" do |channel, stream, data|
+    logs[channel[:host]] << data
+    break if stream == :err
+  end
+
+  logs.each do |host, log|
+    tmp.write("--- \#{host} ---\n\n")
+    tmp.write(log + "\n")
+  end
+
+  exec "mate -w \#{tmp.path}" 
+  tmp.close
+end
+
+desc "remotely run console" 
+task :console, :roles => :app do
+  input = ''
+  run "cd \#{current_path} && ./script/console \#{ENV['RAILS_ENV']}" do |channel, stream, data|
+    next if data.chomp == input.chomp || data.chomp == ''
+    print data
+    channel.send_data(input = $stdin.gets) if data =~ /^(>|\?)>/
+  end
+end
 CAP
 
 git :add => "."
