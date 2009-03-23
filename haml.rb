@@ -1,4 +1,5 @@
 plugin 'haml', :git => "git://github.com/nex3/haml.git"
+
 run 'mkdir -p public/stylesheets/sass'
 file "public/stylesheets/sass/base.sass"
 

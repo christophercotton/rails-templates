@@ -12,7 +12,7 @@ run "rm public/robots.txt"
 
 # Create public controller
 generate(:controller, "public", "index", "about", "contact")
-route "map.root    :controller => :public"
+route "map.root    :controller => 'public'"
 route "map.about   'about', :controller => 'public', :action => 'about'"
 route "map.contact 'contact', :controller => 'public', :action => 'contact'"
 

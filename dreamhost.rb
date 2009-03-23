@@ -1,6 +1,6 @@
 @using_git = true
 domain_default = "cdwarren@designfigure.com"
-@dreamhost_domain = ask("What is your user@domain for Git? (Default is #{domain_default})")
+@dreamhost_domain = ask("What is your user@domain for Git? (Leave blank for #{domain_default})")
 @dreamhost_domain = domain_default if @dreamhost_domain.blank?
 
 # Create git repo on Dreamhost
