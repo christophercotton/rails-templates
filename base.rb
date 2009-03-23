@@ -1,4 +1,4 @@
-@app_name = run("pwd").split("/").last.strip
+@app_name = @root.split("/").last.strip
 @base_path = "/Users/christopherdwarren/Workspace/rails-templates"
 
 # Set up the dreamhost git repo
