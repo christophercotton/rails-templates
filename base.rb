@@ -20,6 +20,9 @@ route "map.contact 'contact', :controller => 'public', :action => 'contact'"
 gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
 gem 'RedCloth', :lib => 'redcloth'
 
+# Create the database
+rake("db:create")
+
 # Install gems
 rake("gems:install")
 # Freeze Gems
