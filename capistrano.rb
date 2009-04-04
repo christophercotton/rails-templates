@@ -1,6 +1,9 @@
 run "gem install capistrano"
 url = ask("What is your application's URL? (mydomain.com)")
-git_pwd = ask("What is git user's password?")
+
+# if yes?("Are you hosting it on Dreamhost?") && yes?("Have you already created a user for this app on Dreamhost?") && no?("Have you generated keys yet?")
+#   run "ssh #{@git_user} 'ssh-keygen && cat .ssh/id_rsa.pub | ssh #{@git_user} 'cat >> .ssh/authorized_keys''"
+# end
 
 gem 'capistrano'
 run 'capify .'
@@ -14,7 +17,7 @@ set :applicationdir, "/home/#{@app_name}/#{url}"  # The standard Dreamhost setup
 
 # version control config
 default_run_options[:pty] = true
-set :repository,  "ssh://#{@dreamhost_domain}/~/git/#{@app_name}.git"
+set :repository,  "ssh://#{@dreamhost_domain}/~/#{@app_name}.git"
 set :scm, "git"
 set :scm_passphrase, "#{git_pwd}" # Your Git user's password
 

@@ -1,13 +1,14 @@
+app_name = run("pwd").split("/").last.strip
 @using_git = true
-domain_default = "cdwarren@designfigure.com"
-@dreamhost_domain = ask("What is your user@domain for Git? (Leave blank for #{domain_default})")
-@dreamhost_domain = domain_default if @dreamhost_domain.blank?
+
+@git_user = "gitless@expectless.com"
+@git_path = "~/#{app_name}.git"
+@ssh_git_path = "ssh://#{@git_user}/#{@git_path}"
 
 # Create git repo on Dreamhost
-app_name = run("pwd").split("/").last.strip
-run "ssh #{@dreamhost_domain} 'mkdir -p ~/git/#{app_name}.git && cd ~/git/#{app_name}.git && git --bare init'"
+run "ssh #{@git_user} 'mkdir -p #{@git_path} && cd #{@git_path} && git --bare init'"
 git :init
-run "git remote add origin ssh://#{@dreamhost_domain}/~/git/#{app_name}.git"
+run "git remote add origin #{@ssh_git_path}"
 
 # Update .git-ignore
 run "touch tmp/.gitignore log/.gitignore vendor/.gitignore"

@@ -17,23 +17,17 @@ route "map.about   'about', :controller => 'public', :action => 'about'"
 route "map.contact 'contact', :controller => 'public', :action => 'contact'"
 
 # Set up gems
-gem 'mislav-will_paginate', :lib => 'will_paginate', :source => 'http://gems.github.com'
-gem 'RedCloth', :lib => 'redcloth'
-
-# Create the database
-rake("db:create")
-
-# Install gems
-rake("gems:install")
-# Freeze Gems
-rake("rails:freeze:gems") if yes?("Freeze Rails gems?")
+load_template "#{@base_path}/gems.rb"
 
 # Set up plugins
 load_template "#{@base_path}/plugins.rb"
 
-# Commit to git if we created the repo
+# Commit to git
 git :add => "." if @using_git
 git :commit => "-a -m 'Installed plugins and gems'" if @using_git
+
+# Create the database
+rake("db:create")
 
 if @using_git
   load_template "#{@base_path}/capistrano.rb" if yes?("Set up Capistrano?")

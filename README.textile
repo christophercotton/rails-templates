@@ -1,0 +1,54 @@
+*UMN ASR Rails Templates*
+
+Rails 2.3 Templates
+
+* Creates a Git repository on Dreamhost
+* Sets up Capistrano to use the Git repository
+* Creates a public controller
+* Removes standard files like public.html, robots.txt, and favicon.ico
+* Rakes db:create
+* Installs plugins
+** exception_notifier
+** paperclip
+** asset_packager
+** lazy_developer
+** annotate_models
+** factory_girl
+* Gems
+** will_paginate
+** redcloth
+** shoulda
+
+*Instructions*
+
+<pre>
+  rails my_app -m http://github.com/chriswarren/rails-templates/raw/master/base.rb
+</pre>
+
+Or add the following to your ~/.bash_profile
+
+<pre>
+function railsapp {
+  appname=$1
+	case $2 in
+		"local")
+			template="/Users/warre213/Workspace/rails-templates/base.rb";;
+		*)
+			template="http://github.com/chriswarren/rails-templates/raw/master/base.rb";;
+	esac
+  shift 2
+  rails $appname -m $template $@
+}
+</pre>
+
+and run
+
+<pre>
+  railsapp my_app
+</pre>
+
+Optionally, you can pass "local", "github", or "github-umn" to specify the template to run
+
+<pre>
+  railsapp my_app github
+</pre>
