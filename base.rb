@@ -1,5 +1,6 @@
 @app_name = @root.split("/").last.strip
 @base_path = "/Users/christopherdwarren/Workspace/rails-templates"
+# @base_path = "http://github.com/chriswarren/rails-templates.git"
 
 # Set up the dreamhost git repo
 load_template "#{@base_path}/dreamhost.rb" if yes?("Use Git on Dreamhost?")

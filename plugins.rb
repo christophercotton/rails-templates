@@ -5,3 +5,6 @@ plugin 'asset_packager', :git => 'http://synthesis.sbecker.net/pages/asset_packa
 plugin 'lazy_developer', :git => 'git://github.com/napcs/lazy_developer.git'
 plugin 'annotate_models', :svn => 'http://repo.pragprog.com/svn/Public/plugins/annotate_models'
 plugin 'factory_girl', :git => "git://github.com/thoughtbot/factory_girl.git"
+plugin 'rspec', :git => "git://github.com/dchelimsky/rspec.git"
+plugin 'rspec-rails', :git => "git://github.com/dchelimsky/rspec-rails.git"
+plugin 'cucumber', :git => "git://github.com/aslakhellesoy/cucumber.git"
