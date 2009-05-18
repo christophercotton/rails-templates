@@ -19,7 +19,6 @@ set :applicationdir, "/home/#{@app_name}/#{url}"  # The standard Dreamhost setup
 default_run_options[:pty] = true
 set :repository,  "ssh://#{@dreamhost_domain}/~/#{@app_name}.git"
 set :scm, "git"
-set :scm_passphrase, "#{git_pwd}" # Your Git user's password
 
 set :branch, "master"
 
