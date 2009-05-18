@@ -1,4 +1,6 @@
-*UMN ASR Rails Templates*
+*Christopher Warren's Rails Templates*
+*Twitter: @cdwarren*
+*http://rubberbandwound.com*
 
 Rails 2.3 Templates
 
@@ -14,6 +16,7 @@ Rails 2.3 Templates
 ** lazy_developer
 ** annotate_models
 ** factory_girl
+** authlogic
 * Gems
 ** will_paginate
 ** redcloth
@@ -47,7 +50,7 @@ and run
   railsapp my_app
 </pre>
 
-Optionally, you can pass "local", "github", or "github-umn" to specify the template to run
+Optionally, you can pass "local" or "github" to specify the template to run
 
 <pre>
   railsapp my_app github
